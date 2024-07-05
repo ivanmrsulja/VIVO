@@ -4040,7 +4040,53 @@ there is a measurement process p that has specified output m, a measurement datu
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
 
+    <!-- http://purl.obolibrary.org/obo/ERO_0000791 -->
 
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ERO_0000791">
+        <rdfs:label xml:lang="en">has minimum requirement</rdfs:label>
+        <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Java 11 is a minimum requirement for a software.</obo:IAO_0000112>
+        <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PERSON: Dragan Ivanovic</obo:IAO_0000117>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Minimum requirements for running a software. It might be linked with memory or processor requirement, or other software dependency. </obo:IAO_0000115>
+        <obo:IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has minimum requirement</obo:IAO_0000111>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://purl.obolibrary.org/obo/ERO_0000792 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ERO_0000792">
+        <rdfs:label xml:lang="en">has minimum memory requirement</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/ERO_0000791"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://purl.obolibrary.org/obo/ERO_0000793 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ERO_0000793">
+        <rdfs:label xml:lang="en">has minimum processor requirement</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/ERO_0000791"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://purl.obolibrary.org/obo/ERO_0000794 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ERO_0000794">
+        <rdfs:label xml:lang="en">has required software dependency</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/ERO_0000791"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- http://purl.obolibrary.org/obo/ERO_0000795 -->
+
+    <owl:DatatypeProperty rdf:about="http://purl.obolibrary.org/obo/ERO_0000795">
+        <rdfs:label xml:lang="en">has minimum free storage requirement</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/ERO_0000791"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
 
     <!-- http://purl.org/ontology/bibo/abstract -->
 
@@ -6417,19 +6463,13 @@ To enable other Gender/Sex codes to be used, this dataproperty has range URI. Th
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#contactInformation"/>
+                <owl:onProperty rdf:resource="http://purl.org/ontology/bibo/doi"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#identifier"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#hasFundingVehicle"/>
+                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#supportedBy"/>
                 <owl:allValuesFrom rdf:resource="http://vivoweb.org/ontology/core#Grant"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -6441,6 +6481,16 @@ To enable other Gender/Sex codes to be used, this dataproperty has range URI. Th
         <obo:IAO_0000111 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">software</obo:IAO_0000111>
         <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000120"/>
     </owl:Class>
+
+    <!-- http://vivoweb.org/ontology/core#swhid -->
+
+    <owl:DatatypeProperty rdf:about="http://vivoweb.org/ontology/core#swhid">
+        <rdfs:label xml:lang="en">SWHID</rdfs:label>
+        <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Home page for SoftWare Heritage persistent IDentifiers : https://docs.softwareheritage.org/devel/swh-model/persistent-identifiers.html</obo:IAO_0000112>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SoftWare Heritage persistent IDentifiers, or SWHIDs for short, is a PID for software artifacts. It guarantees to remain stable (persistent) over time.</obo:IAO_0000115>
+        <rdfs:subPropertyOf rdf:resource="http://vivoweb.org/ontology/core#identifier"/>
+        <rdfs:domain rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+    </owl:DatatypeProperty>
 
 
 
@@ -8831,7 +8881,7 @@ has super-classes</obo:IAO_0000115>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#relates"/>
-                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/IAO_0000030"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/BFO_0000002"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rdfs:comment>
@@ -9479,6 +9529,24 @@ This class allows for linking an author to a publication while indicating inform
         <obo:IAO_0000115>A relationship that represents the recognition of an agent as an editor.</obo:IAO_0000115>
     </owl:Class>
 
+    <owl:Class rdf:about="http://vivoweb.org/ontology/core#Maintainership">
+        <rdfs:label xml:lang="en">Maintainership</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://vivoweb.org/ontology/core#Relationship"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#relates"/>
+                <owl:someValuesFrom rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://vivoweb.org/ontology/core#relates"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/ERO_0000071"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <obo:IAO_0000115>A relationship that represents the recognition of a person as a maintainer.</obo:IAO_0000115>
+    </owl:Class>
+
 
 
     <!-- http://vivoweb.org/ontology/core#EducationalProcess -->
@@ -9651,7 +9719,21 @@ This class allows for linking an author to a publication while indicating inform
         <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">F1000 is a place where faculty go to critique papers published in PubMed. Any given record in F1000 might have anywhere from one to dozens of reviews.</obo:IAO_0000112>
     </owl:Class>
 
+    <!-- http://vivoweb.org/ontology/core#DownloadLink -->
 
+    <owl:Class rdf:about="http://vivoweb.org/ontology/core#DownloadLink">
+        <rdfs:label xml:lang="en">Download Link</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/vcard/ns#URL"/>
+        <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Download link is an URL for downloading dataset, scholarly output, software, etc.</obo:IAO_0000112>
+    </owl:Class>
+
+    <!-- http://vivoweb.org/ontology/core#RepositoryLink -->
+
+    <owl:Class rdf:about="http://vivoweb.org/ontology/core#RepositoryLink">
+        <rdfs:label xml:lang="en">Repository Link</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2006/vcard/ns#URL"/>
+        <obo:IAO_0000112 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Repository link is an URL for accessing repository record, e.g. a GitHub repository for a software.</obo:IAO_0000112>
+    </owl:Class>
 
     <!-- http://vivoweb.org/ontology/core#Facility -->
 
