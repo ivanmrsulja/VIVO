@@ -206,6 +206,14 @@ uil-data:resource_name.VIVO
         uil:hasKey      "resource_name" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:software_name.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "software name"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "software_name" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:check_grants_to_exclude.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -419,6 +427,14 @@ uil-data:no_linked_editor.VIVO
         rdfs:label       "no linked editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "no_linked_editor" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:no_linked_maintainer.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "no linked maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "no_linked_maintainer" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:level_undefined_error.VIVO
@@ -699,6 +715,14 @@ uil-data:editor_capitalized.VIVO
         rdfs:label       "Editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "editor_capitalized" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:maintainer_capitalized.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "maintainer_capitalized" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:create_and_link_type_dataset.VIVO
@@ -1524,6 +1548,14 @@ uil-data:editor_of_entry.VIVO
         uil:hasKey      "editor_of_entry" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:maintainer_of_entry.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "maintainer of entry for"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "maintainer_of_entry" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:principal_investigator_entry_for.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -1692,6 +1724,14 @@ uil-data:reordering_editors_failed.VIVO
         uil:hasKey      "reordering_editors_failed" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:reordering_maintainers_failed.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Reordering of maintainers failed."@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "reordering_maintainers_failed" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:none_of_the.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -1802,6 +1842,14 @@ uil-data:select_document_type.VIVO
         rdfs:label       "Please select a value in the Document Type field."@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "select_document_type" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:select_software_type.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Please select a value in the Software Type field."@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "select_software_type" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:reordering_authors_failed.VIVO
@@ -1996,6 +2044,14 @@ uil-data:editor_name.VIVO
         uil:hasKey      "editor_name" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:maintainer_name.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "maintainer name"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "maintainer_name" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:harvest_error_instructions_fiveC.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -2100,6 +2156,14 @@ uil-data:selected_document.VIVO
         uil:hasKey      "selected_document" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:selected_software.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Selected Software"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "selected_software" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:currently_no_grants_for.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -2194,6 +2258,14 @@ uil-data:missing_editor.VIVO
         rdfs:label       "missing editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "missing_editor" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:missing_maintainer.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "missing maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "missing_maintainer" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:save_all_as_csv.VIVO
@@ -2692,6 +2764,14 @@ uil-data:error_processing_editor_request.VIVO
         uil:hasKey      "error_processing_editor_request" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:error_processing_maintainer_request.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Error processing request: maintainer not removed"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "error_processing_maintainer_request" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:no_matching_science_areas.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -2986,6 +3066,14 @@ uil-data:add_editor.VIVO
         rdfs:label       "Add Editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "add_editor" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:add_maintainer.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Add Maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "add_maintainer" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:published_in.VIVO
@@ -3473,6 +3561,14 @@ uil-data:manage_editors.VIVO
         rdfs:label       "Manage Editors"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "manage_editors" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:manage_maintainers.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Manage Maintainers"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "manage_maintainers" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:the_capitalized.VIVO
@@ -4099,6 +4195,14 @@ uil-data:drag_drop_reorder_editors.VIVO
         uil:hasKey      "drag_drop_reorder_editors" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:drag_drop_reorder_maintainers.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Drag and drop to reorder maintainers"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "drag_drop_reorder_maintainers" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:create_and_link_submit_confirm.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -4611,6 +4715,14 @@ uil-data:confirm_editor_removal.VIVO
         uil:hasKey      "confirm_editor_removal" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:confirm_maintainer_removal.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Are you sure you want to remove this maintainer:"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "confirm_maintainer_removal" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:local_research.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -4787,6 +4899,14 @@ uil-data:select_a_document_name.VIVO
         uil:hasKey      "select_a_document_name" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:select_a_software_name.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Please enter or select a value in the Software Name field."@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "select_a_software_name" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:view_results.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -4923,6 +5043,14 @@ uil-data:return_to_publication.VIVO
         uil:hasKey      "return_to_publication" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:return_to_software.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Return to software"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "return_to_software" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:published.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -4961,6 +5089,14 @@ uil-data:missing_info_resource.VIVO
         rdfs:label       "missing information resource"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "missing_info_resource" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:missing_software.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "missing software"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "missing_software" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:orcid_return_to_vivo.VIVO
@@ -5075,6 +5211,14 @@ uil-data:document_type_capitalized.VIVO
         uil:hasKey      "document_type_capitalized" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:software_type_capitalized.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Software Type"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "software_type_capitalized" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:faculty_of_1000.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
@@ -5097,6 +5241,14 @@ uil-data:selected_editor.VIVO
         rdfs:label       "Selected Editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "selected_editor" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:selected_maintainer.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Selected Maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "selected_maintainer" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:view_all_individuals_in_dept.VIVO
@@ -5233,6 +5385,14 @@ uil-data:add_an_editor.VIVO
         rdfs:label       "Add an Editor"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "add_an_editor" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:add_a_maintainer.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Add a Maintainer"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "add_a_maintainer" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:create_entry_for_attendee_role.VIVO
@@ -5753,6 +5913,14 @@ uil-data:remove_editor_link.VIVO
         rdfs:label       "remove editor link"@en-US ;
         uil:hasApp      "VIVO" ;
         uil:hasKey      "remove_editor_link" ;
+        uil:hasPackage  "VIVO-languages" .
+
+uil-data:remove_maintainer_link.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "remove maintainer link"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "remove_maintainer_link" ;
         uil:hasPackage  "VIVO-languages" .
 
 uil-data:email.VIVO
