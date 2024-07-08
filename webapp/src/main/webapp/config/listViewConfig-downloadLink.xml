@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- $This file is distributed under the terms of the license in LICENSE$ -->
+
+<!-- Custom list view config file for core:webpage
+
+     See guidelines at https://wiki.lyrasis.org/display/VIVODOC112x/Custom+List+View+Configurations -->
+
+<list-view-config>
+    <query-select>
+
+        PREFIX core: &lt;http://vivoweb.org/ontology/core#&gt;
+        PREFIX rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+        PREFIX vcard: &lt;http://www.w3.org/2006/vcard/ns#&gt;
+
+        SELECT ?vcard ?link
+               (REPLACE(STR(?link),"^.*(#)(.*)$", "$2") AS ?linkName)
+               ?label
+               ?url
+               ?rank
+        WHERE {
+            ?subject ?property ?vcard .
+            ?vcard vcard:hasURL ?link .
+            ?link a core:DownloadLink .
+            OPTIONAL {
+                <precise-subquery>?subject ?property ?vcard .
+                ?vcard vcard:hasURL ?link .</precise-subquery>
+                ?link rdfs:label ?label .
+            }
+            OPTIONAL {
+                <precise-subquery>?subject ?property ?vcard .
+                ?vcard vcard:hasURL ?link .</precise-subquery>
+                ?link vcard:url ?url .
+            }
+            OPTIONAL {
+                <precise-subquery>?subject ?property ?vcard .
+                ?vcard vcard:hasURL ?link .</precise-subquery>
+                ?link core:rank ?rank .
+            }
+        <critical-data-required>
+        FILTER ( bound(?link) )
+        </critical-data-required>
+        } ORDER BY ?rank ?label
+    </query-select>
+
+    <template>propStatement-webpage.ftl</template>
+    <postprocessor>edu.cornell.mannlib.vitro.webapp.web.templatemodels.individual.MaintainDuplicatesObjectPropertyDataPostProcessor</postprocessor>
+</list-view-config>
