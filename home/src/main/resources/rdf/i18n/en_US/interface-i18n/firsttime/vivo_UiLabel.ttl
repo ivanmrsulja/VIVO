@@ -2596,6 +2596,14 @@ uil-data:document_name_capitalized.VIVO
         uil:hasKey      "document_name_capitalized" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:software_name_capitalized.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Software Name"@en-US ;
+        uil:hasApp      "VIVO" ;
+        uil:hasKey      "software_name_capitalized" ;
+        uil:hasPackage  "VIVO-languages" .
+
 uil-data:add_author.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;

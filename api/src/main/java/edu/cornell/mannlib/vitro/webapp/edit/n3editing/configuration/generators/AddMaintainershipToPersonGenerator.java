@@ -59,14 +59,14 @@ public class AddMaintainershipToPersonGenerator extends VivoBaseGenerator implem
         try {
             ResultSetMem rs = new ResultSetMem(qe.execSelect());
             if (!rs.hasNext()) {
-                return doBadMaintainershipNoPub(vreq);
+                return doBadMaintainershipNoSoftware(vreq);
             } else if (rs.size() > 1) {
-                return doBadMaintainershipMultiplePubs(vreq);
+                return doBadMaintainershipMultipleSoftware(vreq);
             } else {
                 //skip to software
                 RDFNode objNode = rs.next().get("obj");
                 if (!objNode.isResource() || objNode.isAnon()) {
-                    return doBadMaintainershipNoPub(vreq);
+                    return doBadMaintainershipNoSoftware(vreq);
                 }
                 EditConfigurationVTwo editConfiguration = new EditConfigurationVTwo();
                 editConfiguration.setSkipToUrl(UrlBuilder.getIndividualProfileUrl(((Resource) objNode).getURI(), vreq));
@@ -192,13 +192,11 @@ public class AddMaintainershipToPersonGenerator extends VivoBaseGenerator implem
         return EditModeUtils.getEditMode(vreq, predicates);
     }
 
-    private EditConfigurationVTwo doBadMaintainershipMultiplePubs(VitroRequest vreq) {
-        // TODO Auto-generated method stub
+    private EditConfigurationVTwo doBadMaintainershipMultipleSoftware(VitroRequest vreq) {
         return null;
     }
 
-    private EditConfigurationVTwo doBadMaintainershipNoPub(VitroRequest vreq) {
-        // TODO Auto-generated method stub
+    private EditConfigurationVTwo doBadMaintainershipNoSoftware(VitroRequest vreq) {
         return null;
     }
 

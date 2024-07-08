@@ -16,6 +16,6 @@
         <a href="${profileUrl(statement.uri("person"))}" title="${i18n().maintainer_name}">${statement.personName}</a>
     <#else>
         <#-- This shouldn't happen, but we must provide for it -->
-        <a href="${profileUrl(statement.uri("editorship"))}" title="${i18n().missing_maintainer}">${i18n().missing_maintainer}</a>
+        <a href="${profileUrl(statement.uri("maintainership"))}" title="${i18n().missing_maintainer}">${i18n().missing_maintainer}</a>
     </#if>
 </#macro>

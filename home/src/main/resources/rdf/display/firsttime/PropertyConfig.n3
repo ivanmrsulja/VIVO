@@ -725,7 +725,7 @@ local:maintainerOfConfig a :ObjectPropertyDisplayConfig ;
     vitro:displayRankAnnot 21;
     vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
     vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
-    vitro:customEntryFormAnnot "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.AddMaintainorshipsToPersonGenerator"^^<http://www.w3.org/2001/XMLSchema#string> ;
+    vitro:customEntryFormAnnot "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.AddMaintainershipToPersonGenerator"^^<http://www.w3.org/2001/XMLSchema#string> ;
     :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoutreach> .
 
 
@@ -1075,39 +1075,6 @@ local:webpageSoftwareConfig a :ObjectPropertyDisplayConfig ;
     vitro:customEntryFormAnnot "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.ManageWebpagesForIndividualGenerator"^^<http://www.w3.org/2001/XMLSchema#string> ;
     :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
 
-local:codeRepositorySoftwareContext a :ConfigContext ;
-    :hasConfiguration local:codeRepositorySoftwareConfig ;
-    :configContextFor <http://purl.obolibrary.org/obo/ARG_2000028> ;
-    :qualifiedByDomain      <http://purl.obolibrary.org/obo/ERO_0000071> ;
-    :qualifiedByRoot <http://www.w3.org/2006/vcard/ns#Kind> ;
-    :qualifiedBy      <http://vivoweb.org/ontology/core#RepositoryLink> .
-
-local:codeRepositorySoftwareConfig a :ObjectPropertyDisplayConfig ;
-    :listViewConfigFile "listViewConfig-repositoryLink.xml"^^xsd:string ;
-    :displayName "code repository" ;
-    vitro:displayRankAnnot 10;
-    vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
-    vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
-    vitro:customEntryFormAnnot "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.ManageWebpagesForIndividualGenerator"^^<http://www.w3.org/2001/XMLSchema#string> ;
-    :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
-
-local:downloadUrlSoftwareContext a :ConfigContext ;
-    :hasConfiguration local:downloadUrlSoftwareConfig ;
-    :configContextFor <http://purl.obolibrary.org/obo/ARG_2000028> ;
-    :qualifiedByDomain      <http://purl.obolibrary.org/obo/ERO_0000071> ;
-    :qualifiedByRoot <http://www.w3.org/2006/vcard/ns#Kind> ;
-    :qualifiedBy      <http://vivoweb.org/ontology/core#DownloadLink> .
-
-local:downloadUrlSoftwareConfig a :ObjectPropertyDisplayConfig ;
-    :listViewConfigFile "listViewConfig-downloadLink.xml"^^xsd:string ;
-    :displayName "download URL" ;
-    vitro:displayRankAnnot 5;
-    vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
-    vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
-    vitro:customEntryFormAnnot "edu.cornell.mannlib.vitro.webapp.edit.n3editing.configuration.generators.ManageWebpagesForIndividualGenerator"^^<http://www.w3.org/2001/XMLSchema#string> ;
-    :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
-
-
 local:webpageFacilityContext a :ConfigContext ;
     :hasConfiguration local:webpageFacilityConfig ;
     :configContextFor <http://purl.obolibrary.org/obo/ARG_2000028> ;
@@ -1286,6 +1253,40 @@ local:documentPartOfConfig a :ObjectPropertyDisplayConfig ;
     :listViewConfigFile "listViewConfig-fauxPropertyDefault.xml"^^xsd:string ;
     rdfs:label "documentPartOf"@en-US;
     :displayName "part of other document" ;
+    vitro:displayRankAnnot 52;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
+    vitro:selectFromExistingAnnot   "true"^^xsd:boolean ;
+    vitro:offerCreateNewOptionAnnot "true"^^xsd:boolean ;
+    :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
+
+local:softwareHasPartContext a :ConfigContext ;
+    :hasConfiguration local:softwareHasPartConfig ;
+    :configContextFor <http://purl.obolibrary.org/obo/BFO_0000051> ;
+    :qualifiedByDomain      <http://purl.obolibrary.org/obo/ERO_0000071> ;
+    :qualifiedBy      <http://purl.obolibrary.org/obo/ERO_0000071> .
+
+local:softwareHasPartConfig a :ObjectPropertyDisplayConfig ;
+    :listViewConfigFile "listViewConfig-fauxPropertyDefault.xml"^^xsd:string ;
+    rdfs:label "softwareHasPart"@en-US;
+    :displayName "has software part" ;
+    vitro:displayRankAnnot 51;
+    vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
+    vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
+    vitro:selectFromExistingAnnot   "true"^^xsd:boolean ;
+    vitro:offerCreateNewOptionAnnot "true"^^xsd:boolean ;
+    :propertyGroup <http://vivoweb.org/ontology#vitroPropertyGroupoverview> .
+
+local:softwarePartOfContext a :ConfigContext ;
+    :hasConfiguration local:softwarePartOfConfig ;
+    :configContextFor  <http://purl.obolibrary.org/obo/BFO_0000050> ;
+    :qualifiedByDomain <http://purl.obolibrary.org/obo/ERO_0000071> ;
+    :qualifiedBy       <http://purl.obolibrary.org/obo/ERO_0000071> .
+
+local:softwarePartOfConfig a :ObjectPropertyDisplayConfig ;
+    :listViewConfigFile "listViewConfig-fauxPropertyDefault.xml"^^xsd:string ;
+    rdfs:label "softwarePartOf"@en-US;
+    :displayName "part of other software" ;
     vitro:displayRankAnnot 52;
     vitro:hiddenFromDisplayBelowRoleLevelAnnot role:public ;
     vitro:prohibitedFromUpdateBelowRoleLevelAnnot role:public ;
