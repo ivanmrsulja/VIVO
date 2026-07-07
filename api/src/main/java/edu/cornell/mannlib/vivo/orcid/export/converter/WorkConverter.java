@@ -4,9 +4,12 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -71,7 +74,7 @@ public class WorkConverter {
         } else if (record.containsKey("newspaper")) {
             dto.setType("newspaper-article");
         } else {
-            dto.setType(getWorkType(record.get("workType")));
+            dto.setType(getWorkType(record));
         }
 
         ExternalIds externalIds = new ExternalIds();
@@ -201,13 +204,13 @@ public class WorkConverter {
             : Arrays.asList(value.split("; "));
     }
 
-    private static String getWorkType(String type) {
-        if (type == null) {
-            return "other";
-        }
+    private static String getWorkType(Map<String, String> record) {
+        Set<String> types = Arrays.stream(record.getOrDefault("allTypes", "").split("; "))
+            .filter(s -> !s.trim().isEmpty())
+            .collect(Collectors.toSet());
 
         for (Map.Entry<String, String> entry : WORK_TYPE_MAPPING.entrySet()) {
-            if (type.equals(entry.getKey())) {
+            if (types.contains(entry.getKey())) {
                 return entry.getValue();
             }
         }
@@ -228,7 +231,7 @@ public class WorkConverter {
 
             return mapper.readValue(
                 is,
-                new TypeReference<Map<String, String>>() {
+                new TypeReference<LinkedHashMap<String, String>>() {
                 }
             );
         } catch (Exception e) {

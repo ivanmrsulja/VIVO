@@ -30,6 +30,7 @@ SELECT ?resource
        ?authorRoles
        ?authorRanks
        ?authorOrcidIds
+       ?allTypes
 WHERE {
 
     {
@@ -52,6 +53,22 @@ WHERE {
         ?resource vivo:hasPublicationVenue ?journal .
         ?journal rdf:type bibo:Journal .
         ?journal rdfs:label ?journalLabel .
+    }
+
+    OPTIONAL {
+        {
+            SELECT ?resource
+                   (GROUP_CONCAT(STR(?type); SEPARATOR="; ") AS ?allTypes)
+            WHERE {
+                {
+                    SELECT ?resource ?type
+                    WHERE {
+                        ?resource rdf:type ?type .
+                    }
+                }
+            }
+            GROUP BY ?resource
+        }
     }
 
     OPTIONAL {
