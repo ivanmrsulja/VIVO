@@ -6,6 +6,10 @@
             <input type="hidden" name="profileUri" value="${individual.uri}" />
             <input type="submit" class="submit" value="${i18n().disallow_orcid_push}" />
         </form>
+        <form action="${urls.base}/orcid/syncNow" method="get">
+            <input type="hidden" name="profileUri" value="${individual.uri}" />
+            <input type="submit" class="submit" value="${i18n().sync_orcid_now}" />
+        </form>
     <#else>
         <form action="${urls.base}/orcid/allowPush" method="get">
             <input type="hidden" name="profileUri" value="${individual.uri}" />

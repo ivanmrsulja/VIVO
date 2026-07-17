@@ -58,6 +58,7 @@ public class OrcidIntegrationController extends FreemarkerHttpServlet {
     private final static String PATHINFO_ADD_EXTERNAL_ID = "/addExternalId";
     private final static String PATHINFO_ALLOW_PUSH = "/allowPush";
     private final static String PATHINFO_DISALLOW_PUSH = "/disallowPush";
+    private final static String PATHINFO_SYNC_NOW = "/syncNow";
 
     public final static String PATH_DEFAULT = "orcid";
 
@@ -129,6 +130,8 @@ public class OrcidIntegrationController extends FreemarkerHttpServlet {
                 return new OrcidAllowPushHandler(vreq).exec();
             } else if (PATHINFO_DISALLOW_PUSH.equals(pathInfo)) {
                 return new OrcidDisallowPushHandler(vreq).exec();
+            } else if (PATHINFO_SYNC_NOW.equals(pathInfo)) {
+                return new OrcidSyncNowHandler(vreq).exec();
             } else {
                 return new OrcidDefaultHandler(vreq).exec();
             }

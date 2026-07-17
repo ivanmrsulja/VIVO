@@ -48,23 +48,23 @@ public class OrcidSyncService {
     @Scheduled(cron = "${orcid.sync.cron}")
     public void syncOrcidProfiles() {
         getIndividualsWithBoundTokens(OrcidInternalOperationsUtil.ACCESS_TOKEN_PROPERTY)
-            .forEach(
-                (individual, accessToken) -> {
-                    log.info(
-                        "SYNCING: " + individual + " WITH " + OrcidInternalOperationsUtil.decryptSecret(accessToken));
+            .forEach(this::syncOrcidIndividual);
+    }
 
-                    String orcidId = OrcidInternalOperationsUtil.readOrcidIdForUser((individual));
-                    if (orcidId == null) {
-                        return; // should never happen
-                    }
+    public void syncOrcidIndividual(String individual, String accessToken) {
+        log.info("SYNCING: " + individual);
 
-                    orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.EDUCATION, orcidId, accessToken,
-                        sandboxed);
-                    orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.EMPLOYMENTS, orcidId,
-                        accessToken, sandboxed);
-                    orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.WORKS, orcidId, accessToken,
-                        sandboxed);
-                });
+        String orcidId = OrcidInternalOperationsUtil.readOrcidIdForUser((individual));
+        if (orcidId == null) {
+            return; // should never happen
+        }
+
+        orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.EDUCATION, orcidId, accessToken,
+            sandboxed);
+        orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.EMPLOYMENTS, orcidId,
+            accessToken, sandboxed);
+        orcidExportDataLoader.exportSetForIndividual(individual, ExportSet.WORKS, orcidId, accessToken,
+            sandboxed);
     }
 
     @Scheduled(cron = "${orcid.refresh.cron}")

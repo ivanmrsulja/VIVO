@@ -8,7 +8,6 @@ PREFIX foaf:     <http://xmlns.com/foaf/0.1/>
 
 SELECT ?resource
        ?resourceLabel
-       ?workType
        ?journal
        ?journalLabel
        ?magazine
@@ -34,11 +33,10 @@ SELECT ?resource
 WHERE {
 
     {
-        SELECT DISTINCT ?resource ?workType ?resourceLabel
+        SELECT DISTINCT ?resource ?resourceLabel
         WHERE {
             <%s> vivo:relatedBy ?authorship .
             ?authorship vivo:relates ?resource .
-            ?resource <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#mostSpecificType> ?workType .
             ?resource rdf:type bibo:Document .
 
             OPTIONAL {

@@ -1396,6 +1396,14 @@ uil-data:disallow_orcid_push.VIVO
         uil:hasKey      "disallow_orcid_push" ;
         uil:hasPackage  "VIVO-languages" .
 
+uil-data:sync_orcid_now.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Sincronizar ORCID agora"@pt-BR ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "sync_orcid_now" ;
+        uil:hasPackage   "VIVO-languages" .
+
 uil-data:orcid_integration.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
