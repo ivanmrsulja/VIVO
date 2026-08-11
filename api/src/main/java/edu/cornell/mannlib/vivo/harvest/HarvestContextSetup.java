@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -27,7 +28,25 @@ public class HarvestContextSetup implements ServletContextListener {
 
     private static final Log log = LogFactory.getLog(HarvestContextSetup.class);
 
+    public static List<String> findMissingProperties() {
+        List<String> missingProperties = new ArrayList<>();
+
+        for (String property : HarvestContext.REQUIRED_PROPERTIES) {
+            String value = ConfigurationProperties.getInstance().getProperty(property);
+
+            if (value == null || value.trim().isEmpty()) {
+                missingProperties.add(property);
+            }
+        }
+
+        return missingProperties;
+    }
+
     public static void loadModules(ServletContext ctx) {
+        if (!HarvestContext.configured) {
+            return;
+        }
+
         String harvesterDirectory = ConfigurationProperties.getInstance().getProperty("harvester.directory");
         String harvesterConfigurationPath =
             ConfigurationProperties.getInstance().getProperty("harvester.configuration");
@@ -59,13 +78,29 @@ public class HarvestContextSetup implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext ctx = sce.getServletContext();
 
+        List<String> missingProperties = findMissingProperties();
+        if (!missingProperties.isEmpty()) {
+            log.info("VIVO-Harvester integration is disabled, runtime.properties does not define "
+                + String.join(", ", missingProperties)
+                + ". VIVO starts normally, the harvest dashboard reports that the harvester is not configured.");
+            return;
+        }
+
+        HarvestContext.configured = true;
+
         HarvestContext.logFileLocation =
             ConfigurationProperties.getInstance().getProperty("workflow.log.directory");
         if (!HarvestContext.logFileLocation.endsWith("/")) {
             HarvestContext.logFileLocation += "/";
         }
 
-        loadModules(ctx);
+        try {
+            loadModules(ctx);
+        } catch (RuntimeException e) {
+            HarvestContext.configured = false;
+            log.error("VIVO-Harvester integration is disabled, its configuration could not be loaded.", e);
+            return;
+        }
 
         SchedulerManager.scheduleTasks(
             new ScheduledHarvestExecutor()

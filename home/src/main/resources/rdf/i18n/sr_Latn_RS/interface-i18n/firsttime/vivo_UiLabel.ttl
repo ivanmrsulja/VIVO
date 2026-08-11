@@ -6469,3 +6469,42 @@ uil-data:refresh_config.VIVO
         uil:hasApp       "VIVO" ;
         uil:hasKey       "refresh_config" ;
         uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_title.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "VIVO-Harvester nije konfigurisan"@sr-Latn-RS ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_title" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_message.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Integracija sa VIVO-Harvester-om je onemogućena jer nedostaju obavezna podešavanja. VIVO radi normalno, samo prikupljanje podataka nije dostupno."@sr-Latn-RS ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_message" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_missing_properties.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Sledeća podešavanja nedostaju u runtime.properties:"@sr-Latn-RS ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_missing_properties" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_instructions.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Dodajte podešavanja koja nedostaju u runtime.properties i ponovo pokrenite VIVO da biste omogućili kontrolnu tablu za prikupljanje."@sr-Latn-RS ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_instructions" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:add_to_person_profile.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Dodati na profil osobe?"@sr-Latn-RS ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "add_to_person_profile" .

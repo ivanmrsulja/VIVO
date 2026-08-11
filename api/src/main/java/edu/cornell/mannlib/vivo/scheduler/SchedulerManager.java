@@ -7,8 +7,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import edu.cornell.mannlib.vitro.webapp.config.ConfigurationProperties;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class SchedulerManager {
+
+    private static final Log log = LogFactory.getLog(SchedulerManager.class);
 
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(5);
 
@@ -43,11 +47,20 @@ public class SchedulerManager {
         };
 
         // Priority: 1. CRON from properties, 2. Direct cron, 3. fixedRate, 4. fixedDelay
-        String cronFromProperties = getCronFromProperties(scheduled);
-        if (cronFromProperties != null) {
-            scheduleWithCron(task, cronFromProperties);
-        } else if (!scheduled.cron().isEmpty()) {
-            scheduleWithCron(task, scheduled.cron());
+        String cron = scheduled.cron();
+        if (isPropertyPlaceholder(cron)) {
+            String propertyKey = getPropertyKey(cron);
+            String cronFromProperties = ConfigurationProperties.getInstance().getProperty(propertyKey);
+
+            if (cronFromProperties == null || cronFromProperties.trim().isEmpty()) {
+                log.info("Not scheduling " + describe(bean, method) + ", runtime.properties does not define "
+                    + propertyKey + ".");
+                return;
+            }
+
+            scheduleWithCron(task, cronFromProperties, bean, method);
+        } else if (!cron.isEmpty()) {
+            scheduleWithCron(task, cron, bean, method);
         } else if (!scheduled.fixedRate().isEmpty()) {
             long rate = Long.parseLong(scheduled.fixedRate());
             scheduler.scheduleAtFixedRate(task, 0, rate, TimeUnit.MILLISECONDS);
@@ -57,18 +70,26 @@ public class SchedulerManager {
         }
     }
 
-    private static String getCronFromProperties(Scheduled scheduled) {
-        String cron = scheduled.cron();
-        if (cron.startsWith("${") && cron.endsWith("}")) {
-            String propertyKey = cron.substring(2, cron.length() - 1);
-            return ConfigurationProperties.getInstance().getProperty(propertyKey);
-        }
-        return null;
+    private static boolean isPropertyPlaceholder(String cron) {
+        return cron.startsWith("${") && cron.endsWith("}");
     }
 
-    private static void scheduleWithCron(Runnable task, String cronExpression) {
-        CronExpression cron = new CronExpression(cronExpression);
-        scheduleNextRun(task, cron);
+    private static String getPropertyKey(String cron) {
+        return cron.substring(2, cron.length() - 1);
+    }
+
+    private static String describe(Object bean, Method method) {
+        return bean.getClass().getSimpleName() + "." + method.getName() + "()";
+    }
+
+    private static void scheduleWithCron(Runnable task, String cronExpression, Object bean, Method method) {
+        try {
+            CronExpression cron = new CronExpression(cronExpression);
+            scheduleNextRun(task, cron);
+        } catch (IllegalArgumentException e) {
+            log.error("Not scheduling " + describe(bean, method) + ", '" + cronExpression
+                + "' is not a valid cron expression.", e);
+        }
     }
 
     private static void scheduleNextRun(Runnable task, CronExpression cron) {

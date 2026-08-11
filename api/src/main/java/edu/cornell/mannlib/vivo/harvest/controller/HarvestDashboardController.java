@@ -38,6 +38,8 @@ public class HarvestDashboardController extends FreemarkerHttpServlet {
 
     private static final String TEMPLATE_NAME = "harvest-dashboard.ftl";
 
+    private static final String TEMPLATE_NOT_CONFIGURED = "harvest-not-configured.ftl";
+
 
     @Override
     protected ResponseValues processRequest(VitroRequest vreq) throws Exception {
@@ -46,6 +48,12 @@ public class HarvestDashboardController extends FreemarkerHttpServlet {
         UserAccount acc = LoginStatusBean.getCurrentUser(vreq);
         if (acc == null || !RoleCheckUtility.isAdmin(acc)) {
             return new TemplateResponseValues("login.ftl", dataContext);
+        }
+
+        if (!HarvestContext.configured) {
+            dataContext.put("contextPath", ContextPath.getPath(vreq));
+            dataContext.put("missingProperties", HarvestContextSetup.findMissingProperties());
+            return new TemplateResponseValues(TEMPLATE_NOT_CONFIGURED, dataContext);
         }
 
         if ("true".equals(vreq.getParameter("refreshConfig"))) {

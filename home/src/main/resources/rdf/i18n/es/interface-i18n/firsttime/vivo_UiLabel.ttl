@@ -6470,3 +6470,35 @@ uil-data:refresh_config.VIVO
         uil:hasApp       "VIVO" ;
         uil:hasKey       "refresh_config" ;
         uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_title.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "VIVO-Harvester no está configurado"@es ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_title" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_message.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "La integración con VIVO-Harvester está desactivada porque faltan ajustes obligatorios. VIVO funciona con normalidad, solo la recolección no está disponible."@es ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_message" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_missing_properties.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Faltan los siguientes ajustes en runtime.properties:"@es ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_missing_properties" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_instructions.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Añada los ajustes que faltan a runtime.properties y reinicie VIVO para activar el panel de recolección."@es ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_instructions" ;
+        uil:hasPackage   "VIVO-languages" .

@@ -6438,4 +6438,70 @@ uil-data:DAILY.VIVO
         rdf:type         owl:NamedIndividual ;
         rdf:type         uil:UILabel ;
         rdfs:label       "Täglich"@de-DE ;
-        uil:hasApp       "VIVO"
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "DAILY" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_title.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "VIVO-Harvester ist nicht konfiguriert"@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_title" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_message.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Die VIVO-Harvester-Integration ist deaktiviert, da erforderliche Einstellungen fehlen. VIVO selbst läuft normal, nur das Harvesting ist nicht verfügbar."@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_message" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_missing_properties.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Die folgenden Einstellungen fehlen in runtime.properties:"@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_missing_properties" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_instructions.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Fügen Sie die fehlenden Einstellungen zu runtime.properties hinzu und starten Sie VIVO neu, um das Harvest-Dashboard zu aktivieren."@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_instructions" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:WEEKLY.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Wöchentlich"@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "WEEKLY" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:MONTHLY.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Monatlich"@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "MONTHLY" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:QUARTERLY.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Vierteljährlich"@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "QUARTERLY" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:refresh_config.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Konfiguration neu laden."@de-DE ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "refresh_config" ;
+        uil:hasPackage   "VIVO-languages" .

@@ -6470,3 +6470,35 @@ uil-data:refresh_config.VIVO
         uil:hasApp       "VIVO" ;
         uil:hasKey       "refresh_config" ;
         uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_title.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "VIVO-Harvester не настроен"@ru-RU ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_title" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_message.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Интеграция с VIVO-Harvester отключена, так как отсутствуют обязательные параметры. Сам VIVO работает нормально, недоступен только сбор данных."@ru-RU ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_message" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_missing_properties.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "В runtime.properties отсутствуют следующие параметры:"@ru-RU ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_missing_properties" ;
+        uil:hasPackage   "VIVO-languages" .
+
+uil-data:harvester_not_configured_instructions.VIVO
+        rdf:type         owl:NamedIndividual ;
+        rdf:type         uil:UILabel ;
+        rdfs:label       "Добавьте недостающие параметры в runtime.properties и перезапустите VIVO, чтобы включить панель сбора данных."@ru-RU ;
+        uil:hasApp       "VIVO" ;
+        uil:hasKey       "harvester_not_configured_instructions" ;
+        uil:hasPackage   "VIVO-languages" .
