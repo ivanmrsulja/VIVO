@@ -1,0 +1,40 @@
+PREFIX rdf:        <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX foaf:       <http://xmlns.com/foaf/0.1/>
+PREFIX obo:        <http://purl.obolibrary.org/obo/>
+PREFIX vivo:       <http://vivoweb.org/ontology/core#>
+PREFIX vitro:      <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
+PREFIX bibo:       <http://purl.org/ontology/bibo/>
+
+# Generic "find the resources to export" query.
+#
+# %1$s - URI of the individual being exported
+# %2$s - name of the ExportSet being exported (WORKS / EDUCATION / EMPLOYMENTS)
+#
+# Only the branch matching %2$s can produce solutions; every branch is anchored
+# on the individual URI, so the branches that are switched off stay cheap.
+# Resource specific data is loaded separately, per batch of URIs.
+
+SELECT DISTINCT ?resource
+WHERE {
+    {
+        FILTER ("%2$s" = "WORKS")
+
+        <%1$s> vivo:relatedBy ?authorship .
+        ?authorship vivo:relates ?resource .
+        ?resource rdf:type bibo:Document .
+    }
+    UNION
+    {
+        FILTER ("%2$s" = "EDUCATION")
+
+        <%1$s> obo:RO_0000056 ?resource .
+    }
+    UNION
+    {
+        FILTER ("%2$s" = "EMPLOYMENTS")
+
+        <%1$s> vivo:relatedBy ?resource .
+        ?resource vitro:mostSpecificType vivo:FacultyPosition .
+    }
+}
+ORDER BY ?resource

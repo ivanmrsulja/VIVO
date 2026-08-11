@@ -89,29 +89,27 @@ public class OrcidExportDataLoader {
     public void exportSetForIndividual(String individualUri, ExportSet exportSet, String orcidId, String accessToken,
                                        boolean sandboxed) {
         try {
-            boolean shouldFetch = true;
-            String lastFetchedResourceUri = "";
+            String detailQuery = getQueryForExportSet(exportSet);
+            if (detailQuery.isEmpty()) {
+                return;
+            }
 
-            while (shouldFetch) {
-                String queryString =
-                    String.format(getQueryForExportSet(exportSet), individualUri, lastFetchedResourceUri, BATCH_SIZE);
-                if (queryString.isEmpty()) {
-                    return;
-                }
+            Method conversionMethod = getConversionMethod(exportSet);
+            if (conversionMethod == null) {
+                return; // should never happen
+            }
 
-                List<Map<String, String>> bindings = runSparqlQuery(queryString);
-                if (bindings.isEmpty()) {
-                    return;
-                }
+            List<String> resourceUris = findResourceUris(individualUri, exportSet);
 
-                Method conversionMethod = getConversionMethod(exportSet);
-                if (conversionMethod == null) {
-                    return; // should never happen
-                }
+            for (int offset = 0; offset < resourceUris.size(); offset += BATCH_SIZE) {
+                List<String> batch = resourceUris.subList(offset, Math.min(offset + BATCH_SIZE, resourceUris.size()));
 
-                for (Map<String, String> binding : bindings) {
+                String queryString = String.format(detailQuery, buildValuesBlock(batch));
+
+                List<Map<String, String>> records = mergeRecordsByResource(runSparqlQuery(queryString), batch);
+
+                for (Map<String, String> binding : records) {
                     String resourceUri = binding.get("resource");
-                    lastFetchedResourceUri = resourceUri;
 
                     boolean alreadyPushed = OrcidInternalOperationsUtil.wasResourcePushedInPast(resourceUri);
 
@@ -146,12 +144,73 @@ public class OrcidExportDataLoader {
                         log.error("Illegal access while converting to ORCID entity", e);
                     }
                 }
-
-                shouldFetch = bindings.size() == BATCH_SIZE;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private List<String> findResourceUris(String individualUri, ExportSet exportSet)
+        throws InvalidQueryTypeException, NotAcceptableException, AcceptHeaderParsingException, RDFServiceException,
+        IOException {
+
+        String queryString =
+            String.format(OrcidExportQueries.loadQuery("find_export_set_resources.sparql"), individualUri,
+                exportSet.name());
+
+        List<String> resourceUris = new ArrayList<>();
+
+        for (Map<String, String> binding : runSparqlQuery(queryString)) {
+            String resourceUri = binding.get("resource");
+
+            if (resourceUri != null && !resourceUri.isEmpty()) {
+                resourceUris.add(resourceUri);
+            }
+        }
+
+        return resourceUris;
+    }
+
+    private String buildValuesBlock(List<String> resourceUris) {
+        StringBuilder values = new StringBuilder("VALUES ?resource {");
+
+        for (String resourceUri : resourceUris) {
+            values.append(" <").append(resourceUri).append(">");
+        }
+
+        return values.append(" }").toString();
+    }
+
+    private List<Map<String, String>> mergeRecordsByResource(List<Map<String, String>> bindings,
+                                                             List<String> resourceUris) {
+        Map<String, Map<String, String>> recordsByResource = new HashMap<>();
+
+        for (Map<String, String> binding : bindings) {
+            String resourceUri = binding.get("resource");
+            if (resourceUri == null) {
+                continue;
+            }
+
+            Map<String, String> record = recordsByResource.computeIfAbsent(resourceUri, uri -> new HashMap<>());
+
+            for (Map.Entry<String, String> column : binding.entrySet()) {
+                if (!record.containsKey(column.getKey())) {
+                    record.put(column.getKey(), column.getValue());
+                }
+            }
+        }
+
+        List<Map<String, String>> records = new ArrayList<>();
+
+        for (String resourceUri : resourceUris) {
+            Map<String, String> record = recordsByResource.get(resourceUri);
+
+            if (record != null) {
+                records.add(record);
+            }
+        }
+
+        return records;
     }
 
     public List<Map<String, String>> runSparqlQuery(String queryString)

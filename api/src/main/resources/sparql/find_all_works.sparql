@@ -6,6 +6,14 @@ PREFIX obo:      <http://purl.obolibrary.org/obo/>
 PREFIX vcard:    <http://www.w3.org/2006/vcard/ns#>
 PREFIX foaf:     <http://xmlns.com/foaf/0.1/>
 
+# Loads work specific data for an already known batch of work URIs.
+#
+# %1$s - VALUES block binding ?resource to the URIs of the current batch.
+#
+# The VALUES block is repeated inside every sub-SELECT on purpose: sub-SELECTs
+# are evaluated bottom up, so an outer binding of ?resource does not constrain
+# them. Without it the aggregates below group over the whole triple store.
+
 SELECT ?resource
        ?resourceLabel
        ?journal
@@ -32,20 +40,11 @@ SELECT ?resource
        ?allTypes
 WHERE {
 
-    {
-        SELECT DISTINCT ?resource ?resourceLabel
-        WHERE {
-            <%s> vivo:relatedBy ?authorship .
-            ?authorship vivo:relates ?resource .
-            ?resource rdf:type bibo:Document .
+    %1$s
 
-            OPTIONAL {
-                ?resource rdfs:label ?resourceLabel .
-            }
-        }
+    OPTIONAL {
+        ?resource rdfs:label ?resourceLabel .
     }
-
-    FILTER (STR(?resource) > "%s")
 
     OPTIONAL {
         ?resource vivo:hasPublicationVenue ?journal .
@@ -58,12 +57,9 @@ WHERE {
             SELECT ?resource
                    (GROUP_CONCAT(STR(?type); SEPARATOR="; ") AS ?allTypes)
             WHERE {
-                {
-                    SELECT ?resource ?type
-                    WHERE {
-                        ?resource rdf:type ?type .
-                    }
-                }
+                %1$s
+
+                ?resource rdf:type ?type .
             }
             GROUP BY ?resource
         }
@@ -135,15 +131,17 @@ WHERE {
     OPTIONAL {
         {
             SELECT ?resource
-                   (GROUP_CONCAT(?authorName;          SEPARATOR="; ") AS ?authors)
+                   (GROUP_CONCAT(?authorName;             SEPARATOR="; ") AS ?authors)
                    (GROUP_CONCAT(?authorEmailWithDefault; SEPARATOR="; ") AS ?authorEmails)
-                   (GROUP_CONCAT(?authorRole;          SEPARATOR="; ") AS ?authorRoles)
-                   (GROUP_CONCAT(?authorRank;          SEPARATOR="; ") AS ?authorRanks)
-                   (GROUP_CONCAT(?orcidIdWithDefault;  SEPARATOR="; ") AS ?authorOrcidIds)
+                   (GROUP_CONCAT(?authorRole;             SEPARATOR="; ") AS ?authorRoles)
+                   (GROUP_CONCAT(?authorRank;             SEPARATOR="; ") AS ?authorRanks)
+                   (GROUP_CONCAT(?orcidIdWithDefault;     SEPARATOR="; ") AS ?authorOrcidIds)
             WHERE {
                 {
                     SELECT DISTINCT ?resource ?anyAuthorship ?authorName ?authorEmailWithDefault ?authorRole ?authorRank ?orcidIdWithDefault
                     WHERE {
+                        %1$s
+
                         ?resource vivo:relatedBy ?anyAuthorship .
                         ?anyAuthorship vivo:relates ?author .
                         ?author a foaf:Person .
@@ -187,5 +185,3 @@ WHERE {
         }
     }
 }
-ORDER BY ?resource
-LIMIT %s

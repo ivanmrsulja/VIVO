@@ -10,6 +10,10 @@ PREFIX vcard:      <http://www.w3.org/2006/vcard/ns#>
 PREFIX bibo:       <http://purl.org/ontology/bibo/>
 PREFIX dcterms:    <http://purl.org/dc/terms/>
 
+# Loads education specific data for an already known batch of education URIs.
+#
+# %1$s - VALUES block binding ?resource to the URIs of the current batch.
+
 SELECT ?resource
        ?startDate
        ?endDate
@@ -23,9 +27,7 @@ SELECT ?resource
        ?urlValue
        ?ror
 WHERE {
-    <%s> obo:RO_0000056 ?resource .
-
-    FILTER (STR(?resource) > "%s")
+    %1$s
 
     OPTIONAL {
         ?resource obo:RO_0002234 ?output .
@@ -75,5 +77,3 @@ WHERE {
         }
     }
 }
-ORDER BY ?resource
-LIMIT %s

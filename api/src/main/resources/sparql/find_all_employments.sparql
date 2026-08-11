@@ -6,6 +6,11 @@ PREFIX vivo:       <http://vivoweb.org/ontology/core#>
 PREFIX vcard:      <http://www.w3.org/2006/vcard/ns#>
 PREFIX vitro:      <http://vitro.mannlib.cornell.edu/ns/vitro/0.7#>
 
+# Loads employment specific data for an already known batch of position URIs.
+# The vivo:FacultyPosition constraint is applied while finding the URIs.
+#
+# %1$s - VALUES block binding ?resource to the URIs of the current batch.
+
 SELECT ?resource
        ?position
        ?institution
@@ -18,11 +23,7 @@ SELECT ?resource
        ?urlValue
        ?ror
 WHERE {
-    <%s> vivo:relatedBy ?resource .
-
-    FILTER (STR(?resource) > "%s")
-
-    ?resource vitro:mostSpecificType vivo:FacultyPosition .
+    %1$s
 
     OPTIONAL {
         ?resource rdfs:label ?position .
@@ -67,5 +68,3 @@ WHERE {
         }
     }
 }
-ORDER BY ?resource
-LIMIT %s
